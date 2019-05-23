@@ -67,12 +67,10 @@ Edit package.json at the root to add :
 Create the react app : 
 `create-react-app client`
 
-
-
-## Edit package.json in the client app :
+Edit package.json in the client app :
 `"proxy": "http://localhost:5000"`
 
-## Edit the app.js of the client app : 
+Edit the app.js of the client app : 
 ```
 import React, { Component } from 'react';
 import './App.css';
@@ -130,6 +128,25 @@ class App extends Component {
 
 export default App;
 ```
+
+Create a git folder et commit : 
+```
+git init
+echo node_modules > .gitignore
+git add .
+git commit -m "Initial commit"
+```
+
+
+Deploy on heroku
+
+```
+heroku create
+git push heroku master
+```
+visit the url given from the bash
+
+
 I have added an add-on in Heroku (mLab mongodb). Then I created a collection called 'test' and inside simple elements :
  
 ```
@@ -139,66 +156,7 @@ I have added an add-on in Heroku (mLab mongodb). Then I created a collection cal
 ]
 ```
 
-Then in index.js (the express server) I connected to it and put the json in the app.get method
-(I use a properties.ini file to hide my url mlab mongodb)
 
-```
-var MongoClient = require('mongodb').MongoClient;
-let collection = []
-var url = properties.get('mongo.url');
+Commit and Deploy again
 
-MongoClient.connect(url, function(err, db) {
-    console.log("Connected correctly to server");
-    if (err){console.log(err);}
-    collection = db.collection('test');
-})
-app.get('/api/users', (req, res) => {
-  collection.find().toArray(function(err, docs) {
-    res.json(docs)
-  })
-});
-```
-
-I can fetch data from the front end :
-```
-  state = {users : []}
-
-  componentDidMount() {
-    this.getUsers();
-  }
-
-  getUsers = () => {
-    fetch('/api/users')
-      .then(res => res.json())
-      .then(users => this.setState({ users }))
-  }
-```
-
-and access it like this in my render like this: 
-```
-{this.state.users.map((item) =>
- <li id={item._id}>
-   {item.username}
- </li>
-)}
-```
-
-
-
-## Create a git folder et commit : 
-```
-git init
-echo node_modules > .gitignore
-git add .
-git commit -m "Initial commit"
-```
-
-
-# Deploy on heroku
-
-```
-heroku create
-git push heroku master
-```
-visit the url given from the bash
 
