@@ -50,11 +50,6 @@ console.log(`Password generator listening on ${port}`);
 ```
 
 
-Create at the root a properties.ini file and add inside : 
-```
-mongo.url = <url de votre base de données>
-```
-
 
 Edit package.json at the root to add : 
 ```
@@ -144,16 +139,21 @@ Deploy on heroku
 heroku create
 git push heroku master
 ```
-visit the url given from the bash
+visit the url given from the bash (it shouldnt work), then connect to your account heroku and the page attributed to this new project (the name of the project is the same as the one given in the url, it is generated automatically)
 
 
-I have added an add-on in Heroku (mLab mongodb). Then I created a collection called 'test' and inside simple elements :
+In heroku, Add an add-on (mLab mongodb). Create a collection called 'test' and inside simple elements :
  
 ```
 [
  {"_id":"5ce5815efb6fc01bf23a75e7","username":"toto"},
  {"_id":"5ce70d8ffb6fc01bf23b5bc1","username":"titi"}
 ]
+```
+
+In your project create at the root a properties.ini file and add the url of your database inside (could be found in heroku in the last tab in the var revealed): 
+```
+mongo.url = <url de votre base de données>
 ```
 
 
