@@ -3,7 +3,7 @@ import './App.css';
 
 class App extends Component {
   // Initialize state
-  state = { passwords: [] }
+  state = {passwords : []}
 
   // Fetch passwords after first mount
   componentDidMount() {
@@ -14,16 +14,16 @@ class App extends Component {
     // Get the passwords and store them in state
     fetch('/api/passwords')
       .then(res => res.json())
-      .then(passwords => this.setState({ passwords }));
+      .then(passwords => this.setState({ passwords }))
+      .then(() => console.log(this.state))
   }
 
   render() {
-    const { passwords } = this.state;
 
     return (
       <div className="App">
         {/* Render the passwords if we have them */}
-        {passwords.length ? (
+        {this.state.passwords.length ? (
           <div>
             <h1>5 Passwords.</h1>
             <ul className="passwords">
@@ -33,9 +33,9 @@ class App extends Component {
                 be the same number of passwords, and they never
                 change positions in the array.
               */}
-              {passwords.map((password, index) =>
+              {this.state.passwords.map((item, index) =>
                 <li key={index}>
-                  {password}
+                  {item.username}
                 </li>
               )}
             </ul>
