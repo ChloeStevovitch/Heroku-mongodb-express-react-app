@@ -1,14 +1,13 @@
 const express = require('express');
 const path = require('path');
-const generatePassword = require('password-generator');
 const app = express();
-
+var PropertiesReader = require('properties-reader');
+var properties = PropertiesReader('properties.ini');
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
-
-var url = "mongodb://heroku_cc12z6t8:i5jc4kk17r5gfskq2nqc7e5q7p@ds115045.mlab.com:15045/heroku_cc12z6t8";
 var MongoClient = require('mongodb').MongoClient;
 let collection = []
+var url = properties.get('mongo.url');
 
 MongoClient.connect(url, function(err, db) {
     console.log("Connected correctly to server");

@@ -9,7 +9,8 @@
   "dependencies": {
     "express": "^4.17.0",
     "mongodb": "^2.2.33",
-    "password-generator": "^2.2.0"
+    "password-generator": "^2.2.0",
+    "properties-reader": "0.0.16"
   },
   "scripts": {
     "start": "node index.js",
