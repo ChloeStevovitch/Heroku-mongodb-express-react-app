@@ -156,6 +156,9 @@ mongo.url = <url de votre base de données>
 ```
 No quote should be used, just plain text
 
-Commit and Deploy again
-
-
+Commit and push 
+```
+git add .
+git commit -m "second commit"
+git push heroku master
+```
