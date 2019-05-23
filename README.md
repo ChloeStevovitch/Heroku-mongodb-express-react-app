@@ -1,4 +1,3 @@
-# Heroku-express-react-app
 Quick way to build and deploy a complete react app with a backend and a mlab mongoDb database connected
 on Windows
 
