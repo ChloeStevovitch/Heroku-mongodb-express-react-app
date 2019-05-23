@@ -154,7 +154,7 @@ In your project create at the root a properties.ini file and add the url of your
 ```
 mongo.url = <url de votre base de données>
 ```
-
+No quote should be used, just plain text
 
 Commit and Deploy again
 
