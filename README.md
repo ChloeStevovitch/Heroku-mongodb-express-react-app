@@ -162,3 +162,47 @@ git add .
 git commit -m "second commit"
 git push heroku master
 ```
+
+## Go further 
+If you want to post request to add an object (data) to your database (you can have a look of you database in heroku, by clicking on the mLab plugin of your project) 
+
+ - server side : 
+
+```
+app.post('/api/create',(req, res) => {
+  collection.insert(req.body)
+  res.send('successfully added to your database');
+})
+
+```
+- client side :
+
+```
+  async add(data){
+    const headers = new Headers()
+    headers.append('Content-Type','application/json')
+    headers.append('Access-Control-Allow-Origin','*')
+    headers.append('Access-Control-Allow-Method','*')
+    headers.append('Access-Control-Allow-Headers','*')
+    headers.append('Accept','application/json')
+    const options = {
+      method : 'POST',
+      headers,
+      body: JSON.stringify(data),
+    }
+   
+    const request = new Request ('http://localhost:5000/api/create',options)
+    fetch(request)
+      .then(res=> console.log(res.body))
+  }
+
+```
+
+Make sure you have this line in your server-side file to be able to parse json, otherwise your req.body will be considered as empty
+
+```
+app.use(bodyParser.json())
+
+```
+
+For any modification in your server side file, reload the server in your cmd (exit the program and launch again npm start) if you want your modifications to be effective
