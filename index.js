@@ -6,17 +6,17 @@ var properties = PropertiesReader('properties.ini');
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, 'client/build')));
 var MongoClient = require('mongodb').MongoClient;
-let collection = []
+let db = []
+let collection =[]
 var url = properties.get('mongo.url');
-
-
-const dbName='test'
+console.log(url)
+const dbName='heroku_vn8nrv9t'
 
 MongoClient.connect(url, function(err, client) {
     console.log("Connected correctly to server");
     if (err){console.log(err);}
-    collection = client.db(dbName);
-
+    db = client.db(dbName);
+    collection = db.collection('test')
 })
 
 app.get('/api/users', (req, res) => {
