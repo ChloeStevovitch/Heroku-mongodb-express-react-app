@@ -9,10 +9,14 @@ var MongoClient = require('mongodb').MongoClient;
 let collection = []
 var url = properties.get('mongo.url');
 
-MongoClient.connect(url, function(err, db) {
+
+const dbName='test'
+
+MongoClient.connect(url, function(err, client) {
     console.log("Connected correctly to server");
     if (err){console.log(err);}
-    collection = db.collection('test');
+    collection = client.db(dbName);
+
 })
 
 app.get('/api/users', (req, res) => {
