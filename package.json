@@ -10,7 +10,7 @@
     "express": "^4.17.0",
     "mongodb": "^2.2.33",
     "password-generator": "^2.2.0",
-    "properties-reader": "0.0.16"
+    "properties-reader": "2.2.0"
   },
   "scripts": {
     "start": "node index.js",
